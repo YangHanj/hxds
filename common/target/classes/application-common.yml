@@ -1,0 +1,24 @@
+spring:
+  profiles: common
+
+tencent:
+  cloud:
+    appId:  #腾讯云APPID
+    secretId: AKIDNn392nUDp4jBQSJzcEhxxkLl04u9G9qK #腾讯云SecretId
+    secretKey: LVZaaXSK8zriZQLF8zrhVI3pX0aAmMwU #腾讯云SecretKey
+    region-public: #公有存储桶所在地域
+    bucket-public: #公有存储桶名称
+    region-private: #私有存储桶所在地域
+    bucket-private: #私有存储桶名称
+
+wx:
+  app-id: wx859667fb5a61ff28 #小程序APPID
+  app-secret: df2ad98153a6bde7d7ad20febb37d11a #小程序密钥
+  mch-id: #商户号ID（课程QQ群共享里能找到）
+  key: #商户密钥（课程QQ群共享里能找到）
+  cert-path: #数字证书文件路径（课程QQ群共享里能找到）
+
+minio:
+  endpoint: http://43.138.71.234:9000
+  access-key: root
+  secret-key: jiaojiao520

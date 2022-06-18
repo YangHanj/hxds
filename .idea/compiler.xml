@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
         <module name="hxds-tm" />
+        <module name="hxds-dr" />
       </profile>
     </annotationProcessing>
   </component>
@@ -15,6 +16,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common" options="-parameters" />
       <module name="hxds" options="" />
+      <module name="hxds-dr" options="-parameters" />
       <module name="hxds-tm" options="-parameters" />
     </option>
   </component>
