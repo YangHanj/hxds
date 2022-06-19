@@ -8,6 +8,8 @@
         <module>common</module>
         <module>hxds-tm</module>
         <module>hxds-dr</module>
+        <module>hxds-cts</module>
+        <module>bff-driver</module>
     </modules>
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>

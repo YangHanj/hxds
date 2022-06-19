@@ -1,2 +1,4 @@
 # Project exclude paths
 /hxds-tm/target/
+.idea
+.txlcn
