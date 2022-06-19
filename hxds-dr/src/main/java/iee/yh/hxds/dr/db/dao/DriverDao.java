@@ -1,10 +1,12 @@
 package iee.yh.hxds.dr.db.dao;
 
 
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+@Mapper
 public interface DriverDao {
     /**
      * 根据openid或者driverid查询是否存在司机记录

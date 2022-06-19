@@ -1,10 +1,9 @@
 package iee.yh.hxds.dr.db.pojo;
 
-import lombok.Data;
 
 import java.io.Serializable;
 
-@Data
+
 public class DriverRecognitionEntity implements Serializable {
     /**
      * 主键
@@ -27,4 +26,36 @@ public class DriverRecognitionEntity implements Serializable {
     private String createTime;
 
     private static final long serialVersionUID = 1L;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(Long driverId) {
+        this.driverId = driverId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
 }

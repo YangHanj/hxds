@@ -1,7 +1,5 @@
 package iee.yh.hxds.dr.db.dao;
 
-import com.example.hxds.dr.db.pojo.DriverRecognitionEntity;
-
 import java.util.Map;
 
 /**
