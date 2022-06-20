@@ -25,6 +25,7 @@ import java.util.Map;
 public class registerNewDriver {
     @Resource
     private DriverService driverService;
+
     @PostMapping("/registerNewDriver")
     @Operation(summary = "新司机注册")
     public R registerNewDriver(@RequestBody @Valid RegisterNewDriverForm from){

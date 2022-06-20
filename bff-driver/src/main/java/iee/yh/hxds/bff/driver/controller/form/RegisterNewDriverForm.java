@@ -1,4 +1,4 @@
-package iee.yh.hxds.dr.controller.form;
+package iee.yh.hxds.bff.driver.controller.form;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * @author yanghan
- * @date 2022/6/19
+ * @date 2022/6/20
  */
 @Schema(description = "新司机注册表单")
 public class RegisterNewDriverForm {
@@ -19,7 +19,6 @@ public class RegisterNewDriverForm {
     @NotBlank(message = "photo不能为空")
     @Schema(description = "用户头像")
     private String photo;
-
 
     public String getCode() {
         return code;
