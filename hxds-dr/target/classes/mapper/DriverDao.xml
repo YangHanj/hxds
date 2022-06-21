@@ -23,8 +23,8 @@
             photo=#{photo},
             real_auth=1,
             summary='{"level":0,"totalOrder":0,"weekOrder":0,"weekComment":0,"appeal":0}',
-            archive=false;
-            'status'=1
+            archive=false,
+            status=1
     </insert>
     <!--
         查询司机的主键值,主键采用雪花算法生成，插入之后需要再次查询获取

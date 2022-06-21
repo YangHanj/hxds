@@ -1,4 +1,4 @@
-package iee.yh.common;
+package iee.yh.common.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

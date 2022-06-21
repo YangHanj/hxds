@@ -20,9 +20,9 @@ spring:
         file-extension: yaml
         server-addr: 127.0.0.1:8848
         prefix: ${spring.application.name}
-        namespace: hxds
+        namespace: aed1912e-f98d-4a4e-8e76-a529e32e251d
       discovery:
-        namespace: hxds
+        namespace: aed1912e-f98d-4a4e-8e76-a529e32e251d
         username: nacos
         password: nacos
         server-addr: 127.0.0.1:8848

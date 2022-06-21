@@ -22,7 +22,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/driver")
 @Tag(name = "DriverController",description = "司机模块web接口")
-public class registerNewDriver {
+public class DriverController {
     @Resource
     private DriverService driverService;
 

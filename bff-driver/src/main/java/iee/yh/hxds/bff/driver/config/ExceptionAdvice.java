@@ -43,13 +43,13 @@ public class ExceptionAdvice {
         }
         // 处理业务异常
         else if (e instanceof HxdsException){
-            logger.error("执行异常",e);
+            logger.error("执行异常",e.getMessage());
             HxdsException exception = (HxdsException) e;
             json.set("error",exception.getMsg());
         }
         // 处理其他异常
         else {
-            logger.error("执行异常",e);
+            logger.error("执行异常",e.getMessage());
             json.set("error","执行异常");
         }
         return json.toString();

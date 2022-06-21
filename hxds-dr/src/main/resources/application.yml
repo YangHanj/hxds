@@ -24,10 +24,10 @@ spring:
         file-extension: yaml
         server-addr: localhost:8848
         prefix: ${spring.application.name}
-        namespace: hxds
+        namespace: aed1912e-f98d-4a4e-8e76-a529e32e251d
       #配置子系统在Nacos上的注册信息
       discovery:
-        namespace: hxds
+        namespace: aed1912e-f98d-4a4e-8e76-a529e32e251d
         username: nacos
         password: nacos
         server-addr: localhost:8848
