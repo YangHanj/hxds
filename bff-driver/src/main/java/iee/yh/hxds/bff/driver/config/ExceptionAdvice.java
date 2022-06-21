@@ -47,6 +47,16 @@ public class ExceptionAdvice {
             HxdsException exception = (HxdsException) e;
             json.set("error",exception.getMsg());
         }
+        //司机已经注册异常
+        else if (e.getMessage().contains("该微信已经注册，无需重复注册!")) {
+            logger.error("执行异常", e);
+            json.set("error", "该微信已经注册，无需重复注册!");
+        }
+        //司机登陆时候的手机号不一致
+        else if (e.getMessage().contains("当前手机号与注册手机号不一致")) {
+            logger.error("执行异常", e);
+            json.set("error", "当前手机号与注册手机号不一致");
+        }
         // 处理其他异常
         else {
             logger.error("执行异常",e.getMessage());
