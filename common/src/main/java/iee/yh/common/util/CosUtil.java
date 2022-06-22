@@ -94,7 +94,7 @@ public class CosUtil {
         map.put("path", path);
 
         //如果保存的是图片，用数据万象服务对图片内容审核
-        if (List.of(".jpg", ".jpeg", ".png", ".gif", ".bmp").contains(fileType)) {
+        if (List.of(".jpg", ".jpeg", ".png", ".gif", ".bmp").contains(fileType.toLowerCase())) {
             //审核图片内容
             ImageAuditingRequest request = new ImageAuditingRequest();
             request.setBucketName(bucketPublic);
