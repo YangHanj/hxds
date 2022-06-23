@@ -3,6 +3,7 @@ package iee.yh.hxds.dr.controller;
 import cn.hutool.core.bean.BeanUtil;
 import iee.yh.common.util.R;
 import iee.yh.hxds.dr.controller.form.RegisterNewDriverForm;
+import iee.yh.hxds.dr.controller.form.UpdateDriverAuthForm;
 import iee.yh.hxds.dr.service.DriverService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,5 +33,13 @@ public class DriverController {
         Map param = BeanUtil.beanToMap(from);
         String userId = driverService.registerNewDriver(param);
         return R.ok().put("userId",userId);
+    }
+
+    @PostMapping("/updateDriverAuth")
+    @Operation(summary = "更新实名认证信息")
+    public R updateDriverAuth(@RequestBody @Valid UpdateDriverAuthForm form) {
+        Map param = BeanUtil.beanToMap(form);
+        int rows = driverService.updateDriverAuth(param);
+        return R.ok().put("rows", rows);
     }
 }

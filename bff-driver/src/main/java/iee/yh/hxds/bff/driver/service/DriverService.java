@@ -1,6 +1,7 @@
 package iee.yh.hxds.bff.driver.service;
 
 import iee.yh.hxds.bff.driver.controller.form.RegisterNewDriverForm;
+import iee.yh.hxds.bff.driver.controller.form.UpdateDriverAuthForm;
 
 /**
  * @author yanghan
@@ -13,4 +14,11 @@ public interface DriverService {
      * @return
      */
     long registerNewDriver(RegisterNewDriverForm form);
+
+    /**
+     * 司机认证
+     * @param form
+     * @return
+     */
+    int updateDriverAuth(UpdateDriverAuthForm form);
 }

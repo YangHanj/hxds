@@ -13,4 +13,11 @@ public interface DriverService {
      * @return
      */
     String registerNewDriver(Map param);
+
+    /**
+     * 存储司机的实名信息
+     * @param param
+     * @return
+     */
+    int updateDriverAuth(Map param);
 }

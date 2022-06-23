@@ -4,6 +4,7 @@ import cn.hutool.core.convert.Convert;
 import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import iee.yh.common.util.R;
 import iee.yh.hxds.bff.driver.controller.form.RegisterNewDriverForm;
+import iee.yh.hxds.bff.driver.controller.form.UpdateDriverAuthForm;
 import iee.yh.hxds.bff.driver.feign.DrServiceApi;
 import iee.yh.hxds.bff.driver.service.DriverService;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,12 @@ public class registerNewDriverImpl implements DriverService {
         R r = drServiceApi.registerNewDriver(form);
         Long userId = Convert.toLong(r.get("userId"));
         return userId;
+    }
+
+    @Override
+    public int updateDriverAuth(UpdateDriverAuthForm form) {
+        R r = drServiceApi.updateDriverAuth(form);
+        int rows  = Convert.toInt(r.get("rows"));
+        return rows;
     }
 }

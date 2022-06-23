@@ -34,6 +34,11 @@ public class DriverServiceImpl implements DriverService {
     @Resource
     private WalletDao walletDao;
 
+    /**
+     * 司机注册
+     * @param param
+     * @return
+     */
     @Transactional
     @LcnTransaction
     @Override
@@ -71,5 +76,17 @@ public class DriverServiceImpl implements DriverService {
         walletDao.insert(walletEntity);
 
         return driverId;
+    }
+
+    /**
+     * 司机实名
+     * @param param
+     * @return
+     */
+    @Override
+    @Transactional
+    @LcnTransaction
+    public int updateDriverAuth(Map param) {
+        return driverDao.updateDriverAuth(param);
     }
 }

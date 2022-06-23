@@ -22,6 +22,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.HashMap;
 
 /**
+ * 用于向COS传输文件的web层接口
  * @author yanghan
  * @date 2022/6/22
  */

@@ -27,6 +27,13 @@ public interface DriverDao {
      * @return
      */
     String searchDriverId(String openId);
+
+    /**
+     * 存储司机的实名信息
+     * @param param
+     * @return
+     */
+    int updateDriverAuth(Map param);
 }
 
 
