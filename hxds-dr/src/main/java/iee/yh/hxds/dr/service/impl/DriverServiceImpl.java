@@ -1,8 +1,14 @@
 package iee.yh.hxds.dr.service.impl;
 
 import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import com.codingapi.txlcn.tc.annotation.LcnTransaction;
+import com.tencentcloudapi.common.Credential;
+import com.tencentcloudapi.common.exception.TencentCloudSDKException;
+import com.tencentcloudapi.iai.v20200303.IaiClient;
+import com.tencentcloudapi.iai.v20200303.models.CreatePersonRequest;
+import com.tencentcloudapi.iai.v20200303.models.CreatePersonResponse;
 import iee.yh.common.exception.HxdsException;
 import iee.yh.common.util.MicroAppUtil;
 import iee.yh.hxds.dr.db.dao.DriverDao;
@@ -11,6 +17,9 @@ import iee.yh.hxds.dr.db.dao.WalletDao;
 import iee.yh.hxds.dr.db.pojo.DriverSettingsEntity;
 import iee.yh.hxds.dr.db.pojo.WalletEntity;
 import iee.yh.hxds.dr.service.DriverService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +34,9 @@ import java.util.Map;
  */
 @Service
 public class DriverServiceImpl implements DriverService {
+
+    private Logger logger = LoggerFactory.getLogger(DriverServiceImpl.class);
+
     @Resource
     private MicroAppUtil microAppUtil;
     @Resource
@@ -33,6 +45,15 @@ public class DriverServiceImpl implements DriverService {
     private DriverSettingsDao settingsDao;
     @Resource
     private WalletDao walletDao;
+
+    @Value("${tencent.cloud.secretId}")
+    private String secretId;
+    @Value("${tencent.cloud.secretKey}")
+    private String secretKey;
+    @Value("${tencent.cloud.face.groupName}")
+    private String groupName;
+    @Value("${tencent.cloud.face.region}")
+    private String region;
 
     /**
      * 司机注册
@@ -88,5 +109,57 @@ public class DriverServiceImpl implements DriverService {
     @LcnTransaction
     public int updateDriverAuth(Map param) {
         return driverDao.updateDriverAuth(param);
+    }
+
+    @Override
+    @Transactional
+    @LcnTransaction
+    public String createDriverFaceModel(long driverId, String photo) {
+        // 查询员工的姓名与性别
+        HashMap map = driverDao.searchDriverNameAndSex(driverId);
+        String name = MapUtil.getStr(map,"name");
+        String sex = MapUtil.getStr(map,"sex");
+
+        // 创建腾讯云司机面部档案
+        Credential cred = new Credential(secretId,secretKey);
+        IaiClient client = new IaiClient(cred, region);
+        try{
+            CreatePersonRequest req = new CreatePersonRequest();
+            req.setGroupId(groupName);   //人员库ID
+            req.setPersonId(driverId + "");   //人员ID
+            long gender = sex.equals("男") ? 1L : 2L;
+            req.setGender(gender);
+            req.setQualityControl(4L);   //照片质量等级
+            req.setUniquePersonControl(4L);   //重复人员识别等级
+            req.setPersonName(name);   //姓名
+            req.setImage(photo);   //base64图片
+            CreatePersonResponse resp = client.CreatePerson(req);
+            if (StrUtil.isNotBlank(resp.getFaceId())) {
+                //更新司机表的archive字段值
+                int rows = driverDao.updateDriverArchive(driverId);
+                if (rows != 1) {
+                    return "更新司机归档字段失败";
+                }
+            }
+        }catch (TencentCloudSDKException e){
+            logger.error("创建腾讯云端司机档案失败",e);
+            return "创建腾讯云端司机档案失败";
+        }
+        return "";
+    }
+
+    @Override
+    public HashMap login(String code) {
+        // 利用临时授权码获取永久openid
+        String openId = microAppUtil.getOpenId(code);
+        // 查询登录信息
+        HashMap login = driverDao.login(openId);
+        // 如果存在面部信息，则进行结果转译
+        if (login != null && login.containsKey("archive")){
+            int temp = MapUtil.getInt(login, "archive");
+            boolean archive = temp == 1 ? true : false;
+            login.replace("archive",archive);
+        }
+        return login;
     }
 }

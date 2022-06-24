@@ -1,6 +1,8 @@
 package iee.yh.hxds.bff.driver.feign;
 
 import iee.yh.common.util.R;
+import iee.yh.hxds.bff.driver.controller.form.CreateDriverFaceModelForm;
+import iee.yh.hxds.bff.driver.controller.form.LoginForm;
 import iee.yh.hxds.bff.driver.controller.form.RegisterNewDriverForm;
 import iee.yh.hxds.bff.driver.controller.form.UpdateDriverAuthForm;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -19,4 +21,10 @@ public interface DrServiceApi {
 
     @PostMapping("/driver/updateDriverAuth")
     R updateDriverAuth(UpdateDriverAuthForm form);
+
+    @PostMapping("/driver/createDriverFaceModel")
+    R createDriverFaceModel(CreateDriverFaceModelForm form);
+
+    @PostMapping("/driver/login")
+    R login(LoginForm form);
 }

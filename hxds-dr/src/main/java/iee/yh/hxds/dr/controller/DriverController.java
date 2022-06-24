@@ -2,6 +2,8 @@ package iee.yh.hxds.dr.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import iee.yh.common.util.R;
+import iee.yh.hxds.dr.controller.form.CreateDriverFaceModelForm;
+import iee.yh.hxds.dr.controller.form.LoginForm;
 import iee.yh.hxds.dr.controller.form.RegisterNewDriverForm;
 import iee.yh.hxds.dr.controller.form.UpdateDriverAuthForm;
 import iee.yh.hxds.dr.service.DriverService;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -41,5 +44,19 @@ public class DriverController {
         Map param = BeanUtil.beanToMap(form);
         int rows = driverService.updateDriverAuth(param);
         return R.ok().put("rows", rows);
+    }
+
+    @PostMapping("/createDriverFaceModel")
+    @Operation(summary = "创建司机人脸模型归档")
+    public R createDriverFaceModel(@RequestBody @Valid CreateDriverFaceModelForm form) {
+        String result = driverService.createDriverFaceModel(form.getDriverId(), form.getPhoto());
+        return R.ok().put("result", result);
+    }
+
+    @PostMapping("/login")
+    @Operation(summary = "登陆系统")
+    public R login(@RequestBody @Valid LoginForm form) {
+        HashMap map = driverService.login(form.getCode());
+        return R.ok().put("result", map);
     }
 }

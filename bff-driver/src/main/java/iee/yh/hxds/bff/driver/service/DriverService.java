@@ -1,7 +1,11 @@
 package iee.yh.hxds.bff.driver.service;
 
+import iee.yh.hxds.bff.driver.controller.form.CreateDriverFaceModelForm;
+import iee.yh.hxds.bff.driver.controller.form.LoginForm;
 import iee.yh.hxds.bff.driver.controller.form.RegisterNewDriverForm;
 import iee.yh.hxds.bff.driver.controller.form.UpdateDriverAuthForm;
+
+import java.util.HashMap;
 
 /**
  * @author yanghan
@@ -21,4 +25,13 @@ public interface DriverService {
      * @return
      */
     int updateDriverAuth(UpdateDriverAuthForm form);
+
+    /**
+     * 创建人脸模型
+     * @param form
+     * @return
+     */
+    String createDriverFaceModel(CreateDriverFaceModelForm form);
+
+    HashMap login(LoginForm form);
 }

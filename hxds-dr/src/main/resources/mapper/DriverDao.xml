@@ -61,4 +61,29 @@
         WHERE id = #{driverId}
     </update>
 
+    <!--查询司机的姓名与性别-->
+    <select id="searchDriverNameAndSex" parameterType="long" resultType="HashMap">
+        SELECT name,
+               sex
+        FROM tb_driver
+        WHERE id = #{driverId}
+    </select>
+
+    <!--更新腾讯云面部信息-->
+    <update id="updateDriverArchive" parameterType="long">
+        UPDATE tb_driver
+        SET archive=1
+        WHERE id = #{driverId}
+    </update>
+
+    <!--登录 查询 id 、是否认证、是否存储面部数据-->
+    <select id="login" parameterType="String" resultType="HashMap">
+        SELECT CAST(id AS CHAR) AS id,
+               real_auth        AS realAuth,
+               archive
+        FROM tb_driver
+        WHERE `status` != 2 AND open_id = #{openId}
+    </select>
+
+
 </mapper>

@@ -34,6 +34,27 @@ public interface DriverDao {
      * @return
      */
     int updateDriverAuth(Map param);
+
+    /**
+     * 查询司机的姓名与性别
+     * @param driverId
+     * @return
+     */
+    HashMap searchDriverNameAndSex(long driverId);
+
+    /**
+     * 更新司机的在腾讯云的面部信息
+     * @param driverId
+     * @return
+     */
+    int updateDriverArchive(long driverId);
+
+    /**
+     * 利用openid查询
+     * @param code
+     * @return
+     */
+    HashMap login(String code);
 }
 
 
