@@ -45,7 +45,6 @@ public class CosController {
         }
         try{
             String path = null;
-            //TODO
             HashMap map = cosUtil.uploadPublicFile(file, path);
             return R.ok(map);
         }catch (Exception e){

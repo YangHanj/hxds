@@ -55,6 +55,13 @@ public interface DriverDao {
      * @return
      */
     HashMap login(String code);
+
+    /**
+     * 查询司机的总体信息
+     * @param driverId
+     * @return
+     */
+    HashMap searchDriverBaseInfo(long driverId);
 }
 
 

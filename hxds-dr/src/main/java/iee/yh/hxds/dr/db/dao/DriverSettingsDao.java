@@ -23,6 +23,13 @@ public interface DriverSettingsDao {
      * @return
      */
     int insertDriverSettings(DriverSettingsEntity entity);
+
+    /**
+     * 查询司机设定
+     * @param driverId
+     * @return
+     */
+    String searchDriverSettings(long driverId);
 }
 
 

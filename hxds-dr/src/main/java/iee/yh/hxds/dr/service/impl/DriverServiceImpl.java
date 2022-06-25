@@ -3,6 +3,7 @@ package iee.yh.hxds.dr.service.impl;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.tencentcloudapi.common.Credential;
 import com.tencentcloudapi.common.exception.TencentCloudSDKException;
@@ -161,5 +162,13 @@ public class DriverServiceImpl implements DriverService {
             login.replace("archive",archive);
         }
         return login;
+    }
+
+    @Override
+    public HashMap searchDriverBaseInfo(long driverId) {
+        HashMap map = driverDao.searchDriverBaseInfo(driverId);
+        JSONObject summary = JSONUtil.parseObj(MapUtil.getStr(map, "summary"));
+        map.replace("summary",summary);
+        return map;
     }
 }

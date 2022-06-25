@@ -4,22 +4,15 @@ import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.map.MapUtil;
 import iee.yh.common.util.R;
-import iee.yh.hxds.bff.driver.controller.form.CreateDriverFaceModelForm;
-import iee.yh.hxds.bff.driver.controller.form.LoginForm;
-import iee.yh.hxds.bff.driver.controller.form.RegisterNewDriverForm;
-import iee.yh.hxds.bff.driver.controller.form.UpdateDriverAuthForm;
+import iee.yh.hxds.bff.driver.controller.form.*;
 import iee.yh.hxds.bff.driver.service.DriverService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author yanghan
@@ -84,5 +77,35 @@ public class DriverController {
             return R.ok().put("token",token).put("realAuth",realAuth).put("archive",archive);
         }
         return R.ok();
+    }
+
+    @GetMapping("/logout")
+    @Operation(summary = "退出系统")
+    @SaCheckLogin
+    public R logout() {
+        StpUtil.logout();
+        return R.ok();
+    }
+
+    @PostMapping("/searchDriverBaseInfo")
+    @Operation(summary = "查询司机基本信息")
+    @SaCheckLogin
+    public R searchDriverBaseInfo() {
+        // 获取到但前登录的用户id
+        long driverId = StpUtil.getLoginIdAsLong();
+        // 构建form类
+        SearchDriverBaseInfoForm form = new SearchDriverBaseInfoForm();
+        form.setDriverId(driverId);
+        HashMap map = driverService.searchDriverBaseInfo(form);
+        return R.ok().put("result", map);
+    }
+
+    @PostMapping("/searchWorkbenchData")
+    @Operation(summary = "查询司机工作台数据")
+    @SaCheckLogin
+    public R searchWorkbenchData() {
+        long driverId = StpUtil.getLoginIdAsLong();
+        HashMap result = driverService.searchWorkbenchData(driverId);
+        return R.ok().put("result", result);
     }
 }

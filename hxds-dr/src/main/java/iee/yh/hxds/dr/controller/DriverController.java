@@ -2,17 +2,11 @@ package iee.yh.hxds.dr.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import iee.yh.common.util.R;
-import iee.yh.hxds.dr.controller.form.CreateDriverFaceModelForm;
-import iee.yh.hxds.dr.controller.form.LoginForm;
-import iee.yh.hxds.dr.controller.form.RegisterNewDriverForm;
-import iee.yh.hxds.dr.controller.form.UpdateDriverAuthForm;
+import iee.yh.hxds.dr.controller.form.*;
 import iee.yh.hxds.dr.service.DriverService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -58,5 +52,12 @@ public class DriverController {
     public R login(@RequestBody @Valid LoginForm form) {
         HashMap map = driverService.login(form.getCode());
         return R.ok().put("result", map);
+    }
+
+    @PostMapping("/searchDriverBaseInfo")
+    @Operation(summary = "查询司机基本信息")
+    public R searchDriverBaseInfo(@RequestBody @Valid SearchDriverBaseInfoForm form) {
+        HashMap result = driverService.searchDriverBaseInfo(form.getDriverId());
+        return R.ok().put("result", result);
     }
 }

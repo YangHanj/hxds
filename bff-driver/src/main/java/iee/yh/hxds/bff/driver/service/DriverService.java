@@ -1,9 +1,6 @@
 package iee.yh.hxds.bff.driver.service;
 
-import iee.yh.hxds.bff.driver.controller.form.CreateDriverFaceModelForm;
-import iee.yh.hxds.bff.driver.controller.form.LoginForm;
-import iee.yh.hxds.bff.driver.controller.form.RegisterNewDriverForm;
-import iee.yh.hxds.bff.driver.controller.form.UpdateDriverAuthForm;
+import iee.yh.hxds.bff.driver.controller.form.*;
 
 import java.util.HashMap;
 
@@ -34,4 +31,18 @@ public interface DriverService {
     String createDriverFaceModel(CreateDriverFaceModelForm form);
 
     HashMap login(LoginForm form);
+
+    /**
+     * 查询司机的总体信息
+     * @param form
+     * @return
+     */
+    HashMap searchDriverBaseInfo(SearchDriverBaseInfoForm form);
+
+    /**
+     * 司机工作台
+     * @param driverId
+     * @return
+     */
+    HashMap searchWorkbenchData(long driverId);
 }
