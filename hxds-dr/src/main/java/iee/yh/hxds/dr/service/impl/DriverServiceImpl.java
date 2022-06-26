@@ -12,6 +12,7 @@ import com.tencentcloudapi.iai.v20200303.models.CreatePersonRequest;
 import com.tencentcloudapi.iai.v20200303.models.CreatePersonResponse;
 import iee.yh.common.exception.HxdsException;
 import iee.yh.common.util.MicroAppUtil;
+import iee.yh.common.util.PageUtils;
 import iee.yh.hxds.dr.db.dao.DriverDao;
 import iee.yh.hxds.dr.db.dao.DriverSettingsDao;
 import iee.yh.hxds.dr.db.dao.WalletDao;
@@ -26,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -170,5 +172,20 @@ public class DriverServiceImpl implements DriverService {
         JSONObject summary = JSONUtil.parseObj(MapUtil.getStr(map, "summary"));
         map.replace("summary",summary);
         return map;
+    }
+
+    @Override
+    public PageUtils searchDriverByPage(Map param) {
+        long count = driverDao.searchDriverCount(param);
+        ArrayList<HashMap> list = null;
+        if (count == 0) {
+            list = new ArrayList<>();
+        } else {
+            list = driverDao.searchDriverByPage(param);
+        }
+        int start = (Integer) param.get("start");
+        int length = (Integer) param.get("length");
+        PageUtils pageUtils = new PageUtils(count, length, start, list);
+        return pageUtils;
     }
 }

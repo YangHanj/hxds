@@ -1,5 +1,8 @@
 package iee.yh.hxds.dr.service;
 
+import iee.yh.common.util.PageUtils;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,4 +46,11 @@ public interface DriverService {
      * @return
      */
     HashMap searchDriverBaseInfo(long driverId);
+
+    /**
+     * 分页查询司机信息
+     * @param param
+     * @return
+     */
+    PageUtils searchDriverByPage(Map param);
 }

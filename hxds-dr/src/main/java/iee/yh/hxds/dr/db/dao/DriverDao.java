@@ -62,6 +62,20 @@ public interface DriverDao {
      * @return
      */
     HashMap searchDriverBaseInfo(long driverId);
+
+    /**
+     * 查询符合条件的所有司机（分页查询）
+     * @param parm
+     * @return
+     */
+    ArrayList<HashMap> searchDriverByPage(Map parm);
+
+    /**
+     * 统计符合条件的所有司机
+     * @param param
+     * @return
+     */
+    long searchDriverCount(Map param);
 }
 
 

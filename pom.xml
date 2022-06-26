@@ -12,6 +12,7 @@
         <module>bff-driver</module>
         <module>gateway</module>
         <module>hxds-odr</module>
+        <module>hxds-mis-api</module>
     </modules>
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
