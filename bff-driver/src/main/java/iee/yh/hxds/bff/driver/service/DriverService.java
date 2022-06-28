@@ -45,4 +45,11 @@ public interface DriverService {
      * @return
      */
     HashMap searchWorkbenchData(long driverId);
+
+    /**
+     *  查询司机认证信息
+     * @param form
+     * @return
+     */
+    HashMap searchDriverAuth(SearchDriverAuthForm form);
 }

@@ -53,4 +53,25 @@ public interface DriverService {
      * @return
      */
     PageUtils searchDriverByPage(Map param);
+
+    /**
+     * 查询司机的认证信息（用于司机修改认证信息）
+     * @param deiverId
+     * @return
+     */
+    HashMap searchDriverAuth(long deiverId);
+
+    /**
+     * 查询司机上传的证件信息
+     * @param driverId
+     * @return
+     */
+    HashMap searchDriverRealSummary(long driverId);
+
+    /**
+     * 修改审核信息
+     * @param parm
+     * @return
+     */
+    int updateDriverRealAuth(Map parm);
 }

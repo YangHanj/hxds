@@ -13,6 +13,7 @@
         <module>gateway</module>
         <module>hxds-odr</module>
         <module>hxds-mis-api</module>
+        <module>bff-customer</module>
     </modules>
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>

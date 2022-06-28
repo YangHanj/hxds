@@ -2,8 +2,12 @@ package iee.yh.hxds.bff.driver.feign;
 
 import iee.yh.common.util.R;
 import iee.yh.hxds.bff.driver.controller.form.*;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.validation.Valid;
 
 
 /**
@@ -28,6 +32,9 @@ public interface DrServiceApi {
     @PostMapping("/driver/searchDriverBaseInfo")
     R searchDriverBaseInfo(SearchDriverBaseInfoForm form);
 
+    @PostMapping("/driver/searchDriverAuth")
+    R searchDriverAuth(SearchDriverAuthForm form);
+
     @PostMapping("/settings/searchDriverSettings")
-    public R searchDriverSettings(SearchDriverSettingsForm form);
+    R searchDriverSettings(SearchDriverSettingsForm form);
 }

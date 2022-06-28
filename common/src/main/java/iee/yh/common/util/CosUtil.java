@@ -166,7 +166,10 @@ public class CosUtil {
     /**
      * 获取私有读写文件的临时URL外网访问地址
      */
+    final String DEV_PATH = "开发阶段,暂不使用";
     public String getPrivateFileUrl(String path) {
+        if(path.equals(DEV_PATH))
+            return "";
         COSClient client = getCosPrivateClient();
         GeneratePresignedUrlRequest request =
                 new GeneratePresignedUrlRequest(bucketPrivate, path, HttpMethodName.GET);
