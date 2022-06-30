@@ -13,8 +13,8 @@ tencent:
     face:
       groupName: hxds
       region: ap-beijing
-    map:
-      key: JWQBZ-LD5KU-5XNVB-BIW6Z-5VSXQ-DIFPP
+  map:
+    key: JWQBZ-LD5KU-5XNVB-BIW6Z-5VSXQ-DIFPP
 
 wx:
   app-id: wx859667fb5a61ff28 #小程序APPID

@@ -1,5 +1,8 @@
 package iee.yh.hxds.odr.service;
 
+import iee.yh.hxds.odr.db.pojo.OrderBillEntity;
+import iee.yh.hxds.odr.db.pojo.OrderEntity;
+
 import java.util.HashMap;
 
 /**
@@ -13,4 +16,14 @@ public interface OrderService {
      * @return
      */
     HashMap searchDriverTodayBusinessData(long driverId);
+
+    /**
+     * 创建订单以及账单
+     * @param orderEntity
+     * @param billEntity
+     * @return
+     */
+    String insertOrder(OrderEntity orderEntity, OrderBillEntity billEntity);
+
+
 }

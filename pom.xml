@@ -14,6 +14,7 @@
         <module>hxds-odr</module>
         <module>hxds-mis-api</module>
         <module>bff-customer</module>
+        <module>hxds-mps</module>
     </modules>
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
