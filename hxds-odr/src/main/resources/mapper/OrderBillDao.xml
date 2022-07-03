@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="iee.yh.hxds.odr.db.dao.OrderBillDao">
     <!--插入账单-->
-    <insert id="insert" parameterType="com.example.hxds.odr.db.pojo.OrderBillEntity">
+    <insert id="insert" parameterType="iee.yh.hxds.odr.db.pojo.OrderBillEntity">
         INSERT INTO tb_order_bill
         SET order_id = #{orderId},
             base_mileage = #{baseMileage},

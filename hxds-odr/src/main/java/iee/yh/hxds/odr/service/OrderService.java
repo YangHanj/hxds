@@ -26,4 +26,11 @@ public interface OrderService {
     String insertOrder(OrderEntity orderEntity, OrderBillEntity billEntity);
 
 
+    /**
+     * 修改订单
+     * @param driverId
+     * @param orderId
+     * @return
+     */
+    String acceptNewOrder(long driverId, long orderId);
 }

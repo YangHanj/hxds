@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.HashMap;
 
 /**
  * @author yanghan
@@ -32,8 +33,8 @@ public class OrderController {
     public R createNewOrder(@RequestBody @Valid CreateNewOrderForm form) {
         Long customerId = StpUtil.getLoginIdAsLong();
         form.setCustomerId(customerId);
-        int count = orderService.createNewOrder(form);
-        return R.ok().put("count", count);
+        HashMap result = orderService.createNewOrder(form);
+        return R.ok().put("result", result);
     }
 
 }

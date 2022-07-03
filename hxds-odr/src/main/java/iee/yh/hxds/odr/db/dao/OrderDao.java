@@ -4,6 +4,7 @@ import iee.yh.hxds.odr.db.pojo.OrderEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Mapper
 public interface OrderDao {
@@ -27,6 +28,13 @@ public interface OrderDao {
      * @return
      */
     String searchOrderIdByUUID(String uuid);
+
+    /**
+     * 修改订单
+     * @param param
+     * @return
+     */
+    int acceptNewOrder(Map param);
 }
 
 

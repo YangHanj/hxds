@@ -4,7 +4,7 @@ package iee.yh.hxds.mps.util;
  * @author yanghan
  * @date 2022/6/29
  */
-public class CoordinatrTransform {
+public class CoordinateTransform {
     private static final double x_PI = 3.14159265358979324 * 3000.0 / 180.0;
     private static final double PI = 3.1415926535897932384626;
     private static final double a = 6378245.0;
